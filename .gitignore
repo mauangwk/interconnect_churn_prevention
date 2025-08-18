@@ -1,0 +1,12 @@
+venv
+__pycache__
+.DS_Store
+
+# Only enabled during initial work
+# files
+
+files/outputs/models/*
+
+datasets/pre-processed/*
+
+catboost_info

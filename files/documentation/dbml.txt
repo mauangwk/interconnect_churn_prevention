@@ -1,0 +1,43 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table contract {
+  customerID object [primary key]
+  BeginDate date
+  EndDate date
+  Type int
+  PaperlessBilling int
+  PaymentMethod varchar
+  MonthlyCharges float
+  TotalCharges float
+}
+
+Table personal {
+  customerID object [not null]
+  gender varchar
+  SeniorCitizen varchar
+  Partner varchar
+  Dependents varchar
+}
+
+Table internet {
+  customerID object [not null]
+  InternetService object
+  OnlineSecurity object
+  OnlineBackup object
+  DeviceProtection object
+  TechSupport object
+  StreamingTV object
+  StreamingMovies object
+}
+
+Table phone {
+  customerID object [not null]
+  MultipleLines object
+}
+
+Ref: "contract"."customerID" - "internet"."customerID"
+
+Ref: "contract"."customerID" - "phone"."customerID"
+
+Ref: "contract"."customerID" - "personal"."customerID"
