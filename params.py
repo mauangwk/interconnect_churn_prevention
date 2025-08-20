@@ -12,10 +12,10 @@ sistema_operativo = platform.system()
 test_for_run_required = True
 
 # Si se requiere preprocesamiento
-preprocess_required = False
+preprocess_required = True
 
 # Si se requiere entrenamiento
-training_required = False
+training_required = True
 
 # Sistema de archivos ----------------------------------------------
 # El tipo de archivo parquet mantiene el tipo de dato al ser leido por pandas

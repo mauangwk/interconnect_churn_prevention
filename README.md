@@ -66,7 +66,7 @@ Para la ejecucion del pipeline, es suficiente con la siguiente linea en raiz del
 El repositorio está organizado de la siguiente manera:
 
 - **/datasets**: Contiene los datos brutos (`raw`) y los datos listos para ser procesados para la creacion del modelo(`pre-processed`).
-- **/notebooks/documentation**: Almacena notebooks de Jupyter para análisis exploratorio o referencias del proyecto, como la estructura del modelo de datos.
+- **/files/documentation**: Almacena notebooks de Jupyter para análisis exploratorio o referencias del proyecto en tripleten. La estructura/modelo de datos.
 - **/files/outputs**: Guarda los resultados del proyecto, como el modelo entrenado (`models`).
 - **/src**: Contiene el código fuente modularizado en scripts de Python.
 - `requirements.txt`: Lista de dependencias del proyecto.

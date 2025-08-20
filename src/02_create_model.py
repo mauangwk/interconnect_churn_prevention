@@ -1,33 +1,20 @@
 # 02_create_model.py
+
 import sys
 import os
 sys.path.append(os.getcwd())
 
 # Librerias ----------------------------------------
-
-import pandas as pd
 import params as params
+import pandas as pd
+import joblib
+from catboost import CatBoostClassifier, Pool
+from sklearn.metrics import roc_auc_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import train_test_split
 
+from functions.general_functions import printClassFrequency
 
-# from sklearn.preprocessing import StandardScaler
-# from sklearn.model_selection import GridSearchCV
 
-# import sklearn.metrics as metrics
-# from sklearn.metrics import roc_curve
-from sklearn.metrics import roc_auc_score, precision_score, recall_score, f1_score
-
-# from sklearn.utils import shuffle
-
-# from sklearn.dummy import DummyClassifier
-# from sklearn.tree import DecisionTreeClassifier
-# from sklearn.linear_model import LogisticRegression
-# from sklearn.ensemble import RandomForestClassifier
-from catboost import CatBoostClassifier, Pool
-
-# import lightgbm as lgb
-
-import joblib  # Para guardar el modelo
 
 
 # Se recupera la informacion desde el archivo donde fue almacenado un checkpoint
@@ -46,9 +33,10 @@ X = data.drop('ceased_customer', axis=1)
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=params.validation_size, random_state=10)
 
-# TODO actualizar la funcion para que solo imprima texto
-# displayClassFrequency(y_train)
 
+printClassFrequency(y_train)
+
+print("\n--------------------\n")
 
 model = CatBoostClassifier(
     loss_function='Logloss',

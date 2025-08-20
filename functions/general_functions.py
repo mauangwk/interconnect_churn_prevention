@@ -1,13 +1,11 @@
-import matplotlib.pyplot as plt
-import seaborn as sns
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 
-import pandas as pd
-import numpy as np
+# import pandas as pd
+# import numpy as np
 
-
-from sklearn.utils import shuffle
-
-import sklearn.metrics as metrics
+# from sklearn.utils import shuffle
+# import sklearn.metrics as metrics
 
 
 """
@@ -35,6 +33,12 @@ def displayClassFrequency(y_train):
     print("Normalized Class Frequency:")
     print(class_frequency)
     class_frequency.plot(kind='bar')
+
+
+def printClassFrequency(y_train):
+    class_frequency = y_train.value_counts(normalize=True)
+    print("Normalized Class Frequency:")
+    print(class_frequency)
 
 
 # A function to generate oversampling
