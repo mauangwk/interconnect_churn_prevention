@@ -10,3 +10,5 @@ files/outputs/models/*
 datasets/pre-processed/*
 
 catboost_info
+
+# TODO reivar qué más agregar al gitignore

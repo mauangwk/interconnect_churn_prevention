@@ -46,6 +46,8 @@ user$ source venv/bin/activate
 (venv) user$ python -m pip install -r requirements.txt
 ```
 
+<!-- TODO Borrar las partes del comienzo para hacer fácil el copiado y pegado -->
+
 ## Como ejecutar el proyecto
 
 Se puede controlar las secciones del proceso a ejecutar por medio de variables dentro del modulo **params** en la raiz del proyecto segun se requiera. 
@@ -60,6 +62,8 @@ Para la ejecucion del pipeline, es suficiente con la siguiente linea en raiz del
 ```
 (venv) user$ python project_pipeline.py 
 ```
+
+<!-- TODO idem -->
 
 ## Estructura del Proyecto
 

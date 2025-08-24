@@ -23,6 +23,8 @@ try:
 except Exception as e:
     print(e)
 
+# TODO idem
+
 # Separacion de features y target ------------------------------------------------------------
 
 y = data['ceased_customer']
@@ -84,6 +86,7 @@ results_df = pd.DataFrame({
 print(f"-------------------------------")
 print(results_df.sample(10))
 
+# TODO considerar guardar el dataset de metricas finales
 
 joblib.dump(model, params.MODEL_OUTPUT_PATH)
 print(f"Modelo guardado exitosamente en: {params.MODEL_OUTPUT_PATH}")
