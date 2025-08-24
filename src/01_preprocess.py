@@ -144,6 +144,8 @@ def do_preprocess():
 
     data = df_temp.copy()
 
+# TODO Hacer estandarización después de devidir en train y test. Además revisar si tienes que hacer lo mismo en algunas partes del reemplazo de nulos
+
     scaler = StandardScaler()
     scaler.fit(data[num_features])
     data[num_features] = scaler.transform(data[num_features])
@@ -151,7 +153,7 @@ def do_preprocess():
     # OneHotEncoder
     data = pd.get_dummies(data,
                           columns=cat_features,
-                          # drop_first=True
+                          # drop_first=True 
                           )
 
     # ### Seleccionando columnas finales
@@ -164,6 +166,8 @@ def do_preprocess():
                       ], axis=1)
     data = data.drop(["customer_id"], axis=1)
 
+# TODO Borrar todo el código comentado, a menos de que le pongas una marca explícita para algo, como debug
+
     # ## Generación de un checkpoint
 
     # Almacenando el avance del trabajo de tratamiento de los datos en un archivo como checkpoint
@@ -172,6 +176,8 @@ def do_preprocess():
         print(f"Preprocessing done in {params.FILE_PREPROCESSED_PATH}")
     except Exception as e:
         print(e)
-
+# TODO borrar todas las secciones de código que ya no sean necesarias, como este try/except
 
 do_preprocess()
+
+# TODO Aplanar el código para evitar agregar niveles innecesarios

@@ -7,6 +7,7 @@
 # from sklearn.utils import shuffle
 # import sklearn.metrics as metrics
 
+# TODO Revisar errores y código innecesario
 
 """
  Analiza si el customerID se encuentra mas de una vez en el data set lo que implicaría que es una relacion 1:n

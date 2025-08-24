@@ -6,3 +6,5 @@ catboost
 
 # jupyter
 # matplotlib
+
+# TODO agregar versiones con pip freeze
