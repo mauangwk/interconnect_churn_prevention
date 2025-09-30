@@ -5,8 +5,10 @@ __pycache__
 # Only enabled during initial work
 # files
 
-files/outputs/models/*
+files/outputs/*
 
 datasets/pre-processed/*
 
 catboost_info
+
+# TODO reivar qué más agregar al gitignore

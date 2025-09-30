@@ -39,12 +39,13 @@ En cada archivo, la columna `customerID` (ID de cliente) contiene un código ún
 Por favor considera ejecutar las siguientes instrucciones inicialmente para manejar el workspace dentro de un ambiente virtual:
 
 ```
-user$ mkdir venv
-user$ python3 -m venv venv
-user$ source venv/bin/activate
-(venv) user$ pip install --upgrade pip
-(venv) user$ python -m pip install -r requirements.txt
+mkdir venv
+python3 -m venv venv
+source venv/bin/activate
+user$ pip install --upgrade pip
+user$ python -m pip install -r requirements.txt
 ```
+
 
 ## Como ejecutar el proyecto
 
@@ -58,7 +59,8 @@ La variable **test_for_run_required** se sugiere ejecutar encendida la primera v
 Para la ejecucion del pipeline, es suficiente con la siguiente linea en raiz del proyecto:
 
 ```
-(venv) user$ python project_pipeline.py 
+python project_pipeline.py 
+
 ```
 
 ## Estructura del Proyecto
@@ -77,8 +79,11 @@ El repositorio está organizado de la siguiente manera:
 
 El modelo final es un `CatBoost` optimizado. Las siguientes fueron las metricas obtenidas:
 
-- Precision score: 0.6409574468085106
-- Recall score:    0.5320088300220751
-- F1 score:        0.5814234016887817
-- **ROC AUC Train score:   0.8723**
-- **ROC AUC Test score:   0.8405**
+
+                 train  test
+F1 Score         0.63  0.59
+Accuracy Score   0.82  0.81
+Recall Score     0.57  0.54
+APS              0.72  0.65
+ROC AUC          0.87  0.84 
+
