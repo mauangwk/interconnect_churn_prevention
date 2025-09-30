@@ -10,7 +10,7 @@ sistema_operativo = platform.system()
 # Variables de control de ejecucion --------------------------------
 
 # Si se requiere preprocesamiento
-preprocess_required = False
+preprocess_required = True
 
 # Si se requiere entrenamiento
 training_required = True
