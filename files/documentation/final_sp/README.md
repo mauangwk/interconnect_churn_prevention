@@ -1,1 +1,1 @@
-<!-- TODO Agregar explicacion de qué son estos archivos y para qué se usan -->
+Los siguientes archivos son parte de los entregables con Tripleten. Se trata de notebooks que detallan el proceso de analisis y determinación de un modelo adecuado para lograr el objetivo de prevenir el churn dentro de una Telco.

@@ -5,7 +5,7 @@ __pycache__
 # Only enabled during initial work
 # files
 
-files/outputs/models/*
+files/outputs/*
 
 datasets/pre-processed/*
 
