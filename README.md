@@ -34,6 +34,8 @@ Los datos consisten en archivos obtenidos de diferentes fuentes:
 
 En cada archivo, la columna `customerID` (ID de cliente) contiene un código único asignado a cada cliente. 
 
+<img width="542" height="534" alt="image" src="https://github.com/user-attachments/assets/79bf8d8c-a3e6-42e1-88f6-364e56fa1391" />
+
 
 ## Preparando el ambiente virtual
 Por favor considera ejecutar las siguientes instrucciones inicialmente para manejar el workspace dentro de un ambiente virtual:
@@ -54,8 +56,6 @@ Se puede controlar las secciones del proceso a ejecutar por medio de variables d
 - preprocess_required = True/False
 - training_required = True/False
 
-La variable **test_for_run_required** se sugiere ejecutar encendida la primera vez para comprobar la correcta ejecucion del proyecto desde la configuracion proporcionada por vscode. Una vez realizada la prueba se puede apagar y encender las variables del proyecto dependiendo la necesidad.
-
 Para la ejecucion del pipeline, es suficiente con la siguiente linea en raiz del proyecto:
 
 ```
@@ -68,10 +68,10 @@ python project_pipeline.py
 El repositorio está organizado de la siguiente manera:
 
 - **/datasets**: Contiene los datos brutos (`raw`) y los datos listos para ser procesados para la creacion del modelo(`pre-processed`).
-- **/files/documentation**: Almacena notebooks de Jupyter para análisis exploratorio o referencias del proyecto en tripleten. La estructura/modelo de datos.
-- **/files/outputs**: Guarda los resultados del proyecto, como el modelo entrenado (`models`).
+- **/files/documentation**: Almacena la estructura/modelo de datos y notebooks de Jupyter para análisis exploratorio o referencias del proyecto en un bootcamp en tripleten.
+- **/files/outputs**: Guarda los resultados del proyecto, como el modelo entrenado (`models`), imagenes (`images`)
 - **/src**: Contiene el código fuente modularizado en scripts de Python.
-- `requirements.txt`: Lista de dependencias del proyecto.
+- **`requirements.txt`**: Lista de dependencias del proyecto.
 
 
 
@@ -79,11 +79,15 @@ El repositorio está organizado de la siguiente manera:
 
 El modelo final es un `CatBoost` optimizado. Las siguientes fueron las metricas obtenidas:
 
+<img width="2000" height="600" alt="model_evaluation" src="https://github.com/user-attachments/assets/b04abc7e-df73-4eb1-86f3-289b0153e37a" />
 
-                 train  test
-F1 Score         0.63  0.59
-Accuracy Score   0.82  0.81
-Recall Score     0.57  0.54
-APS              0.72  0.65
-ROC AUC          0.87  0.84 
+|        |train|test|
+|--------------|-----|----|
+|F1 Score      |0.63 |0.59|
+|Accuracy Score|0.82 |0.81|
+|Recall Score  |0.57 |0.54|
+|APS           |0.72 |0.65|
+|ROC AUC       |0.87 |0.84|
+
+
 
