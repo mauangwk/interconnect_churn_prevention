@@ -1,18 +1,22 @@
-# import matplotlib.pyplot as plt
-# import seaborn as sns
+# general_functions.py
 
-# import pandas as pd
-# import numpy as np
+import sys
+import os
+sys.path.append(os.getcwd())
 
-# from sklearn.utils import shuffle
-# import sklearn.metrics as metrics
+# Librerias ----------------------------------------
+import params as params
 
-# TODO Revisar errores y código innecesario
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import sklearn.metrics as metrics
+#import seaborn as sns
 
 """
- Analiza si el customerID se encuentra mas de una vez en el data set lo que implicaría que es una relacion 1:n
+ Analiza si el customerID se encuentra mas de una vez en el data set 
+ lo que implicaría que es una relacion 1:n
 """
-
 
 def analizaDatosLlave(df):
     customer_counts = df['customerID'].value_counts()
@@ -34,6 +38,7 @@ def displayClassFrequency(y_train):
     print("Normalized Class Frequency:")
     print(class_frequency)
     class_frequency.plot(kind='bar')
+    plt.savefig(params.IMAGES_OUTPUT_PATH + 'target_class_frequency.png')
 
 
 def printClassFrequency(y_train):
@@ -89,63 +94,8 @@ def generate_oversamples(features, target, nrepeat):
     return features_upsampled, target_upsampled
 
 
-# A function to generate a undersampling
-def undersample(features, target, fraction):
-    features_zeros = features[target == 0]
-    features_ones = features[target == 1]
-    target_zeros = target[target == 0]
-    target_ones = target[target == 1]
 
-    if (target_zeros.count() > target_ones.count()):
-        features_downsampled = pd.concat(
-            [features_zeros.sample(
-                frac=fraction, random_state=12345)]+[features_ones]
-        )
-        target_downsampled = pd.concat(
-            [target_zeros.sample(
-                frac=fraction, random_state=12345)]+[target_ones]
-        )
-    else:
-        features_downsampled = pd.concat(
-            [features_ones.sample(
-                frac=fraction, random_state=12345)]+[features_zeros]
-        )
-        target_downsampled = pd.concat(
-            [features_ones.sample(
-                frac=fraction, random_state=12345)]+[features_zeros]
-        )
-
-    features_downsampled, target_downsampled = shuffle(
-        features_downsampled, target_downsampled, random_state=12345
-    )
-
-    return features_downsampled, target_downsampled
-
-
-# def selectBestModel(features_train, target_train, strategy_label):
-#     best_score = 0
-#     the_best_model = {}
-#     for model_name, model in models.items():
-#         model_grid_params = grid_params[model_name]
-#         search = GridSearchCV(model,
-#                               # scoring='f1',
-#                               scoring='roc_auc',
-#                               param_grid=model_grid_params,
-#                               cv=5,
-#                               n_jobs=-1)
-#         search.fit(features_train, target_train)
-
-#         if search.best_score_ > best_score:
-#             the_best_model["strategy_label"] = strategy_label
-#             the_best_model["best_estimator"] = search.best_estimator_
-#             the_best_model["best_score"] = search.best_score_
-#             the_best_model["best_params"] = search.best_params_
-#             best_score = search.best_score_
-
-#     return the_best_model
-
-
-def evaluate_model(model, train_features, train_target, test_features, test_target):
+def evaluate_model(model, train_features, train_target, test_features, test_target, metrics_file):
 
     eval_stats = {}
 
@@ -166,14 +116,21 @@ def evaluate_model(model, train_features, train_target, test_features, test_targ
         # ROC
         fpr, tpr, roc_thresholds = metrics.roc_curve(target, pred_proba)
         roc_auc = metrics.roc_auc_score(target, pred_proba)
-        eval_stats[type]['ROC AUC'] = roc_auc
+        eval_stats[type][params.roc_auc_label] = roc_auc
+
+
 
         # PRC
-        precision, recall, pr_thresholds = metrics.precision_recall_curve(
-            target, pred_proba)
+        precision, recall, pr_thresholds = metrics.precision_recall_curve(target, pred_proba)
         aps = metrics.average_precision_score(target, pred_proba)
-        eval_stats[type]['APS'] = aps
+        eval_stats[type][params.aps_label] = aps
+        eval_stats[type][params.accuracy_label] = metrics.accuracy_score(target, pred_target)
+        eval_stats[type][params.recall_label] = metrics.recall_score(target, pred_target)
+        eval_stats[type][params.f1_label] = metrics.f1_score(target, pred_target)
 
+       
+        # Grafica de las estadisticas
+    
         if type == 'train':
             color = 'blue'
         else:
@@ -229,16 +186,20 @@ def evaluate_model(model, train_features, train_target, test_features, test_targ
         ax.set_ylabel('precision')
         ax.legend(loc='lower center')
         ax.set_title(f'PRC')
-
-        eval_stats[type]['Accuracy'] = metrics.accuracy_score(
-            target, pred_target)
-        eval_stats[type]['F1'] = metrics.f1_score(target, pred_target)
-
+    
     df_eval_stats = pd.DataFrame(eval_stats)
     df_eval_stats = df_eval_stats.round(2)
-    df_eval_stats = df_eval_stats.reindex(
-        index=('Exactitud', 'F1', 'APS', 'ROC AUC'))
+    df_eval_stats = df_eval_stats.reindex(index=(
+        params.f1_label, 
+        params.accuracy_label, 
+        params.recall_label,
+        params.aps_label, 
+        params.roc_auc_label
+        ))
 
-    print(df_eval_stats)
+    df_eval_stats.to_csv(metrics_file)
+
+    print("\nMetrics\n", df_eval_stats, "\n")
+    plt.savefig(params.IMAGES_OUTPUT_PATH+"model_evaluation.png")
 
     return
