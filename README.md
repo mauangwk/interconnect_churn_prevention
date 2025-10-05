@@ -1,13 +1,24 @@
-# Analisis para Interconect (una Telecom/Prevencion de Churn)
+# Analisis para la telecom Interconect, Prevencion de Churn
 
-## Que ocurre aqui??
+## Objetivo
 
-Al operador de telecomunicaciones Interconnect le gustaría poder pronosticar su tasa de cancelación de clientes. 
-Si se descubre que un usuario o usuaria planea irse, se le ofrecerán códigos promocionales y opciones de planes especiales. Nuestro objetivo será tratar de prevenir el churn al identificar que un cliente tiene las caracteristicas para abandonar la compañia.
-
+Tratar de prevenir el churn al identificar que un cliente tiene las caracteristicas para abandonar la compañia.
 El equipo de marketing de Interconnect ha recopilado algunos de los datos personales de sus clientes, incluyendo información sobre sus planes y contratos.
 
-### Servicios de Interconnect
+### Descripción de los datos
+
+Los datos consisten en archivos obtenidos de diferentes fuentes:
+
+- `contract.csv` — información del contrato;
+- `personal.csv` — datos personales del cliente;
+- `internet.csv` — información sobre los servicios de Internet;
+- `phone.csv` — información sobre los servicios telefónicos.
+
+En cada archivo, la columna `customerID` (ID de cliente) contiene un código único asignado a cada cliente. 
+
+<img width="542" height="534" alt="image" src="https://github.com/user-attachments/assets/79bf8d8c-a3e6-42e1-88f6-364e56fa1391" />
+
+### Servicios de Interconnect que precisan los datos
 
 Interconnect proporciona principalmente dos tipos de servicios:
 
@@ -23,18 +34,6 @@ Algunos otros servicios que ofrece la empresa incluyen:
 
 La clientela puede elegir entre un pago mensual o firmar un contrato de 1 o 2 años. Puede utilizar varios métodos de pago y recibir una factura electrónica después de una transacción.
 
-### Descripción de los datos
-
-Los datos consisten en archivos obtenidos de diferentes fuentes:
-
-- `contract.csv` — información del contrato;
-- `personal.csv` — datos personales del cliente;
-- `internet.csv` — información sobre los servicios de Internet;
-- `phone.csv` — información sobre los servicios telefónicos.
-
-En cada archivo, la columna `customerID` (ID de cliente) contiene un código único asignado a cada cliente. 
-
-<img width="542" height="534" alt="image" src="https://github.com/user-attachments/assets/79bf8d8c-a3e6-42e1-88f6-364e56fa1391" />
 
 
 ## Preparando el ambiente virtual
@@ -75,7 +74,7 @@ El repositorio está organizado de la siguiente manera:
 
 
 
-## Modelo Final y Resultados
+## Modelo Final y Resultados del entrenamiento
 
 El modelo final es un `CatBoost` optimizado. Las siguientes fueron las metricas obtenidas:
 
